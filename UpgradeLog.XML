@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="UNICOMP PALLET">
+</Property><Property Name="Solution File" Value="C:\Work\VBNET\UNICOMP PALLET\UNICOMP PALLET.sln">
+</Property><Property Name="User Options File" Value="C:\Work\VBNET\UNICOMP PALLET\UNICOMP PALLET.suo">
+</Property><Property Name="Date" Value="Tuesday, October 25, 2016">
+</Property><Property Name="Time" Value="10:33 AM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="UNICOMP PALLET.sln" Description="File successfully backed up as C:\Work\VBNET\UNICOMP PALLET\Backup\UNICOMP PALLET.sln">
+</Event><Event ErrorLevel="0" Project="" Source="UNICOMP PALLET.suo" Description="File successfully backed up as C:\Work\VBNET\UNICOMP PALLET\Backup\UNICOMP PALLET.suo">
+</Event><Event ErrorLevel="0" Project="UNICOMP PALLET" Source="UNICOMP PALLET\UNICOMP PALLET.vbproj" Description="Project file successfully backed up as C:\Work\VBNET\UNICOMP PALLET\Backup\UNICOMP PALLET\UNICOMP PALLET.vbproj">
+</Event><Event ErrorLevel="0" Project="UNICOMP PALLET" Source="UNICOMP PALLET\UNICOMP PALLET.vbproj.user" Description="Project user file successfully backed up as C:\Work\VBNET\UNICOMP PALLET\Backup\UNICOMP PALLET\UNICOMP PALLET.vbproj.user">
+</Event><Event ErrorLevel="0" Project="UNICOMP PALLET" Source="UNICOMP PALLET\AssemblyInfo.vb" Description="File successfully backed up as C:\Work\VBNET\UNICOMP PALLET\Backup\UNICOMP PALLET\AssemblyInfo.vb">
+</Event><Event ErrorLevel="0" Project="UNICOMP PALLET" Source="UNICOMP PALLET\Form1.vb" Description="File successfully backed up as C:\Work\VBNET\UNICOMP PALLET\Backup\UNICOMP PALLET\Form1.vb">
+</Event><Event ErrorLevel="0" Project="UNICOMP PALLET" Source="UNICOMP PALLET\Form1.resx" Description="File successfully backed up as C:\Work\VBNET\UNICOMP PALLET\Backup\UNICOMP PALLET\Form1.resx">
+</Event><Event ErrorLevel="0" Project="UNICOMP PALLET" Source="UNICOMP PALLET\UNICOMP PALLET.vbproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="UNICOMP PALLET" Source="UNICOMP PALLET\UNICOMP PALLET.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="UNICOMP PALLET.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="UNICOMP PALLET.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="UNICOMP PALLET" Source="UNICOMP PALLET\UNICOMP PALLET.vbproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
