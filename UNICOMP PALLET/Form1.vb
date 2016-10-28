@@ -36,12 +36,12 @@ Public Class Form1
     'Do not modify it using the code editor.
     Friend WithEvents btnTest As System.Windows.Forms.Button
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-        Me.btnTest = New System.Windows.Forms.Button
-        Me.txtCode1 = New System.Windows.Forms.TextBox
-        Me.txtCode2 = New System.Windows.Forms.TextBox
-        Me.txtCode3 = New System.Windows.Forms.TextBox
-        Me.txtCode4 = New System.Windows.Forms.TextBox
-        Me.txtCode5 = New System.Windows.Forms.TextBox
+        Me.btnTest = New System.Windows.Forms.Button()
+        Me.txtCode1 = New System.Windows.Forms.TextBox()
+        Me.txtCode2 = New System.Windows.Forms.TextBox()
+        Me.txtCode3 = New System.Windows.Forms.TextBox()
+        Me.txtCode4 = New System.Windows.Forms.TextBox()
+        Me.txtCode5 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'btnTest
@@ -50,7 +50,7 @@ Public Class Form1
         Me.btnTest.Name = "btnTest"
         Me.btnTest.Size = New System.Drawing.Size(75, 23)
         Me.btnTest.TabIndex = 0
-        Me.btnTest.Text = "TEST"
+        Me.btnTest.Text = "PRINT"
         '
         'txtCode1
         '
@@ -58,6 +58,7 @@ Public Class Form1
         Me.txtCode1.Name = "txtCode1"
         Me.txtCode1.Size = New System.Drawing.Size(267, 20)
         Me.txtCode1.TabIndex = 1
+        Me.txtCode1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtCode2
         '
@@ -65,6 +66,7 @@ Public Class Form1
         Me.txtCode2.Name = "txtCode2"
         Me.txtCode2.Size = New System.Drawing.Size(267, 20)
         Me.txtCode2.TabIndex = 2
+        Me.txtCode2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtCode3
         '
@@ -72,6 +74,7 @@ Public Class Form1
         Me.txtCode3.Name = "txtCode3"
         Me.txtCode3.Size = New System.Drawing.Size(267, 20)
         Me.txtCode3.TabIndex = 3
+        Me.txtCode3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtCode4
         '
@@ -79,6 +82,7 @@ Public Class Form1
         Me.txtCode4.Name = "txtCode4"
         Me.txtCode4.Size = New System.Drawing.Size(267, 20)
         Me.txtCode4.TabIndex = 4
+        Me.txtCode4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'txtCode5
         '
@@ -86,6 +90,7 @@ Public Class Form1
         Me.txtCode5.Name = "txtCode5"
         Me.txtCode5.Size = New System.Drawing.Size(267, 20)
         Me.txtCode5.TabIndex = 5
+        Me.txtCode5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Form1
         '
@@ -98,7 +103,8 @@ Public Class Form1
         Me.Controls.Add(Me.txtCode1)
         Me.Controls.Add(Me.btnTest)
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Unicomp - Overpack Box"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -109,6 +115,8 @@ Public Class Form1
     Private Sub btnTest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTest.Click
         Call CreateLabelData()
         Call PrintLabels()
+        Call ClearTexts()
+
     End Sub
 
     Private Sub PrintLabels()
@@ -143,17 +151,22 @@ Public Class Form1
     Private Sub CreateLabelData()
         Dim sDump As String
         sDump = Nothing
+
+        Dim sPartNumber As String = Strings.Left(txtCode1.Text, 7)
+
         Try
             FileOpen(1, "C:\Unicomp\Templates\OVERPACK.csv", OpenMode.Output)
 
-            PrintLine(1, "BC1,BC2,BC3,BC4,BC5")
+            PrintLine(1, "BC1,BC2,BC3,BC4,BC5,PART")
             'lstOutput.Items.Add("OEMCust,UniPN,OEMPN,SerialStart,SerialEnd,QTY,WorkOrder,PrintReprint,Date")
-            sDump = sDump & _
-            txtCode1.Text & "," & _
-            txtCode2.Text & "," & _
-            txtCode3.Text & "," & _
-            txtCode4.Text & "," & _
-            txtCode5.Text
+            sDump = sDump &
+            txtCode1.Text & "," &
+            txtCode2.Text & "," &
+            txtCode3.Text & "," &
+            txtCode4.Text & "," &
+            txtCode5.Text & "," &
+            sPartNumber
+
 
             PrintLine(1, sDump)
             'lstOutput.Items.Add(sDump)
@@ -165,4 +178,51 @@ Public Class Form1
 
         FileClose(1)
     End Sub
+
+    Private Sub txtCode1_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtCode1.KeyPress
+        If e.KeyChar = Chr(13) Then
+            txtCode2.Focus()
+        End If
+    End Sub
+
+    Private Sub txtCode2_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtCode2.KeyPress
+        If e.KeyChar = Chr(13) Then
+            txtCode3.Focus()
+        End If
+    End Sub
+
+    Private Sub txtCode3_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtCode3.KeyPress
+        If e.KeyChar = Chr(13) Then
+            txtCode4.Focus()
+        End If
+    End Sub
+
+    Private Sub txtCode4_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtCode4.KeyPress
+        If e.KeyChar = Chr(13) Then
+            txtCode5.Focus()
+        End If
+    End Sub
+
+    Private Sub txtCode5_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtCode5.KeyPress
+        If e.KeyChar = Chr(13) Then
+            Call CreateLabelData()
+            Call PrintLabels()
+            Call ClearTexts()
+
+        End If
+    End Sub
+
+    Private Sub ClearTexts()
+        txtCode1.Clear()
+        txtCode2.Clear()
+        txtCode3.Clear()
+        txtCode4.Clear()
+        txtCode5.Clear()
+        txtCode1.Focus()
+    End Sub
+
+    Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        Call ClearTexts()
+    End Sub
+
 End Class
