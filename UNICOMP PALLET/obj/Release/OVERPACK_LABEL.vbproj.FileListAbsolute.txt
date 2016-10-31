@@ -1,0 +1,8 @@
+Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Release\OVERPACK_LABEL.vbprojResolveAssemblyReference.cache
+Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Release\OVERPACK_LABEL.vbproj.GenerateResource.Cache
+Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\bin\OVERPACK.exe.config
+Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Release\OVERPACK.frmMain.resources
+Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Release\OVERPACK.xml
+Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\bin\OVERPACK.exe
+Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\bin\OVERPACK.xml
+Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Release\OVERPACK.exe

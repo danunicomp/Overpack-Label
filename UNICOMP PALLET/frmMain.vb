@@ -1,4 +1,4 @@
-Public Class Form1
+Public Class frmMain
     Inherits System.Windows.Forms.Form
 
 #Region " Windows Form Designer generated code "
@@ -30,6 +30,8 @@ Public Class Form1
     Friend WithEvents txtCode3 As System.Windows.Forms.TextBox
     Friend WithEvents txtCode4 As System.Windows.Forms.TextBox
     Friend WithEvents txtCode5 As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents lblVersion As Label
 
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
@@ -42,11 +44,13 @@ Public Class Form1
         Me.txtCode3 = New System.Windows.Forms.TextBox()
         Me.txtCode4 = New System.Windows.Forms.TextBox()
         Me.txtCode5 = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblVersion = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnTest
         '
-        Me.btnTest.Location = New System.Drawing.Point(205, 231)
+        Me.btnTest.Location = New System.Drawing.Point(204, 220)
         Me.btnTest.Name = "btnTest"
         Me.btnTest.Size = New System.Drawing.Size(75, 23)
         Me.btnTest.TabIndex = 0
@@ -92,17 +96,39 @@ Public Class Form1
         Me.txtCode5.TabIndex = 5
         Me.txtCode5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'Form1
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Univers", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(11, 247)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(37, 10)
+        Me.Label1.TabIndex = 6
+        Me.Label1.Text = "Version:"
+        '
+        'lblVersion
+        '
+        Me.lblVersion.AutoSize = True
+        Me.lblVersion.Font = New System.Drawing.Font("Univers", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVersion.Location = New System.Drawing.Point(45, 247)
+        Me.lblVersion.Name = "lblVersion"
+        Me.lblVersion.Size = New System.Drawing.Size(29, 10)
+        Me.lblVersion.TabIndex = 7
+        Me.lblVersion.Text = "Label2"
+        '
+        'frmMain
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(292, 266)
+        Me.Controls.Add(Me.lblVersion)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtCode5)
         Me.Controls.Add(Me.txtCode4)
         Me.Controls.Add(Me.txtCode3)
         Me.Controls.Add(Me.txtCode2)
         Me.Controls.Add(Me.txtCode1)
         Me.Controls.Add(Me.btnTest)
-        Me.Name = "Form1"
+        Me.Name = "frmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Unicomp - Overpack Box"
         Me.ResumeLayout(False)
@@ -112,14 +138,14 @@ Public Class Form1
 
 #End Region
 
+    Dim serialnumber(5) As String
+
     Private Sub btnTest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTest.Click
         Call CreateLabelData()
         Call PrintLabels()
         Call ClearTexts()
 
-    End Sub
-
-    Private Sub PrintLabels()
+    End Sub    Private Sub PrintLabels()
 
         Dim LW As Object
         Try
@@ -127,8 +153,8 @@ Public Class Form1
 
             'Open the label file we want to print
 
-            LW.FileName = "C:\Unicomp\Templates\OVERPACK.lw3"
-
+            'LW.FileName = "C:\Unicomp\Templates\OVERPACK.lw3"
+            LW.FileName = "c:\unicomp\OVERPACK2.lw3"
             'Set up the label print job.
 
             LW.Copies = 1
@@ -143,8 +169,9 @@ Public Class Form1
             'Close down LabelWorks
             LW.PrintLabels()
             LW = Nothing
+
         Catch ex As System.Runtime.InteropServices.COMException
-            MessageBox.Show("Error: " & ".LW3" & " not found" & vbCrLf & "in C:\Unicomp\Templates\", "Template Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Error: " & "OVERPACK2.lw3" & " not found" & vbCrLf & "in OVERPACK2.lw3", "Template Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End Try
     End Sub
 
@@ -155,9 +182,10 @@ Public Class Form1
         Dim sPartNumber As String = Strings.Left(txtCode1.Text, 7)
 
         Try
-            FileOpen(1, "C:\Unicomp\Templates\OVERPACK.csv", OpenMode.Output)
+            'FileOpen(1, "C:\Unicomp\Templates\OVERPACK.csv", OpenMode.Output)
+            FileOpen(1, "c:\unicomp\OVERPACK2.csv", OpenMode.Output)
 
-            PrintLine(1, "BC1,BC2,BC3,BC4,BC5,PART")
+            PrintLine(1, "BC1,BC2,BC3,BC4,BC5,PART,SERIAL_1,SERIAL_2,SERIAL_3,SERIAL_4,SERIAL_5")
             'lstOutput.Items.Add("OEMCust,UniPN,OEMPN,SerialStart,SerialEnd,QTY,WorkOrder,PrintReprint,Date")
             sDump = sDump &
             txtCode1.Text & "," &
@@ -226,6 +254,7 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        '  Dim i As New MiscInfo.Info()
+        lblVersion.Text = Me.GetType.Assembly.GetName.Version.ToString
     End Sub
 End Class
