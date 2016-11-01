@@ -145,7 +145,8 @@ Public Class frmMain
         Call PrintLabels()
         Call ClearTexts()
 
-    End Sub    Private Sub PrintLabels()
+    End Sub
+    Private Sub PrintLabels()
 
         Dim LW As Object
         Try
