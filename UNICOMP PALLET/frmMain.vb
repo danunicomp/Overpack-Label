@@ -32,6 +32,7 @@ Public Class frmMain
     Friend WithEvents txtCode5 As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents lblVersion As Label
+    Friend WithEvents Button1 As Button
 
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
@@ -46,6 +47,7 @@ Public Class frmMain
         Me.txtCode5 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblVersion = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnTest
@@ -116,10 +118,20 @@ Public Class frmMain
         Me.lblVersion.TabIndex = 7
         Me.lblVersion.Text = "Label2"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(136, 247)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 8
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(5, 13)
         Me.ClientSize = New System.Drawing.Size(292, 266)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblVersion)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtCode5)
@@ -141,9 +153,7 @@ Public Class frmMain
     Dim serialnumber(5) As String
 
     Private Sub btnTest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTest.Click
-        Call CreateLabelData()
-        Call PrintLabels()
-        Call ClearTexts()
+        PrintLabel()
 
     End Sub
     Private Sub PrintLabels()
@@ -156,6 +166,7 @@ Public Class frmMain
 
             'LW.FileName = "C:\Unicomp\Templates\OVERPACK.lw3"
             LW.FileName = "c:\unicomp\OVERPACK2.lw3"
+            'LW.FileName = "\\uniwfs1\Share\OVERPACK-BOX-2016\template\OVERPACK2.lw3"
             'Set up the label print job.
 
             LW.Copies = 1
@@ -180,20 +191,27 @@ Public Class frmMain
         Dim sDump As String
         sDump = Nothing
 
+        Dim LB1 As String = txtCode1.Text.ToUpper
+        Dim LB2 As String = txtCode2.Text.ToUpper
+        Dim LB3 As String = txtCode3.Text.ToUpper
+        Dim LB4 As String = txtCode4.Text.ToUpper
+        Dim LB5 As String = txtCode5.Text.ToUpper
+
+
         Dim sPartNumber As String = Strings.Left(txtCode1.Text, 7)
 
         Try
             'FileOpen(1, "C:\Unicomp\Templates\OVERPACK.csv", OpenMode.Output)
             FileOpen(1, "c:\unicomp\OVERPACK2.csv", OpenMode.Output)
 
-            PrintLine(1, "BC1,BC2,BC3,BC4,BC5,PART,SERIAL_1,SERIAL_2,SERIAL_3,SERIAL_4,SERIAL_5")
+            PrintLine(1, "BC1,BC2,BC3,BC4,BC5,PART,PART_1,SERIAL_1,PART_2,SERIAL_2,PART_3,SERIAL_3,PART_4,SERIAL_4,PART_5,SERIAL_5")
             'lstOutput.Items.Add("OEMCust,UniPN,OEMPN,SerialStart,SerialEnd,QTY,WorkOrder,PrintReprint,Date")
             sDump = sDump &
-            txtCode1.Text & "," &
-            txtCode2.Text & "," &
-            txtCode3.Text & "," &
-            txtCode4.Text & "," &
-            txtCode5.Text & "," &
+            LB1 & "," &
+            LB2 & "," &
+            LB3 & "," &
+            LB4 & "," &
+            LB5 & "," &
             sPartNumber
 
 
@@ -209,6 +227,9 @@ Public Class frmMain
     End Sub
 
     Private Sub txtCode1_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtCode1.KeyPress
+        Dim s As String = txtCode1.Text
+        s.ToUpper()
+        txtCode1.Text = s
         If e.KeyChar = Chr(13) Then
             txtCode2.Focus()
         End If
@@ -234,11 +255,15 @@ Public Class frmMain
 
     Private Sub txtCode5_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles txtCode5.KeyPress
         If e.KeyChar = Chr(13) Then
-            Call CreateLabelData()
-            Call PrintLabels()
-            Call ClearTexts()
+            PrintLabel()
 
         End If
+    End Sub
+
+    Private Sub PrintLabel()
+        Call CreateLabelData()
+        Call PrintLabels()
+        Call ClearTexts()
     End Sub
 
     Private Sub ClearTexts()
@@ -257,5 +282,15 @@ Public Class frmMain
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '  Dim i As New MiscInfo.Info()
         lblVersion.Text = Me.GetType.Assembly.GetName.Version.ToString
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim startInfo As New ProcessStartInfo()
+        Dim myprocess As New Process()
+        startInfo.FileName = "Notepad"
+        startInfo.Verb = "runas"
+        ' startInfo.Arguments = "/env /user:" + "Administrator" + " cmd"
+        myprocess.StartInfo = startInfo
+        myprocess.Start()
     End Sub
 End Class

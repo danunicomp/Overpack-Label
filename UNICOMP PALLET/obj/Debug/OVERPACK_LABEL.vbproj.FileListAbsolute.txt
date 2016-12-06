@@ -7,3 +7,4 @@ Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Debug\OVERPACK_LABEL.vbproj.Ge
 Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Debug\OVERPACK.exe
 Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Debug\OVERPACK.xml
 Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Debug\OVERPACK.pdb
+Z:\CLOUD\GITHUB\Overpack-Label\UNICOMP PALLET\obj\Debug\OVERPACK_LABEL.vbprojResolveAssemblyReference.cache
